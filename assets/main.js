@@ -44,8 +44,8 @@
   }, { passive: true });
 
   // ── Active Nav Link ────────────────────────
-  const sections  = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(s => {
@@ -57,7 +57,7 @@
   }, { passive: true });
 
   // ── Mobile Menu ────────────────────────────
-  const burger   = document.getElementById('navBurger');
+  const burger    = document.getElementById('navBurger');
   const mobileMenu = document.getElementById('mobileMenu');
   burger.addEventListener('click', () => {
     const open = burger.classList.toggle('open');
@@ -72,7 +72,8 @@
     });
   });
 
-  // ── Reveal on Scroll ───────────────────────
+  // ── Scroll Reveals (all directions + stagger) ──
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger';
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -81,7 +82,64 @@
       }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  document.querySelectorAll(revealSelectors).forEach(el => revealObserver.observe(el));
+
+  // ── Typing Effect (hero role) ──────────────
+  const roleEl = document.querySelector('.hero-role');
+  if (roleEl) {
+    const phrases = [
+      'Senior Software Engineer',
+      'Java Full Stack Developer',
+      'Python & FastAPI Developer',
+      'AI & LLM Builder',
+      'Flutter Mobile Developer',
+    ];
+    let phraseIdx = 0, charIdx = 0, deleting = false, paused = false;
+    const cursor = document.createElement('span');
+    cursor.className = 'typed-cursor';
+    roleEl.innerHTML = '';
+    const textNode = document.createTextNode('');
+    roleEl.appendChild(textNode);
+    roleEl.appendChild(cursor);
+
+    function typeStep() {
+      const phrase = phrases[phraseIdx];
+      if (paused) { paused = false; return setTimeout(typeStep, deleting ? 600 : 1400); }
+      if (!deleting) {
+        textNode.nodeValue = phrase.slice(0, ++charIdx);
+        if (charIdx === phrase.length) { paused = true; deleting = true; }
+        setTimeout(typeStep, 60 + Math.random() * 40);
+      } else {
+        textNode.nodeValue = phrase.slice(0, --charIdx);
+        if (charIdx === 0) { deleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; paused = true; }
+        setTimeout(typeStep, 32);
+      }
+    }
+    setTimeout(typeStep, 1600);
+  }
+
+  // ── Magnetic Buttons ──────────────────────
+  document.querySelectorAll('.btn-primary, .btn-secondary, .nav-cta').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top  + r.height / 2);
+      btn.style.transform = `translate(${dx * 0.18}px, ${dy * 0.18}px) translateY(-2px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+
+  // ── Parallax Hero Blobs ────────────────────
+  const blobs = document.querySelectorAll('.mesh-blob');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    blobs.forEach((b, i) => {
+      const speed = 0.06 + i * 0.02;
+      b.style.transform = `translateY(${y * speed}px)`;
+    });
+  }, { passive: true });
 
   // ── Skills Tabs ────────────────────────────
   function animateBars(panel) {
@@ -94,7 +152,6 @@
       });
     });
   }
-
   document.querySelectorAll('.skill-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
@@ -105,8 +162,6 @@
       animateBars(panel);
     });
   });
-
-  // Animate bars when section visible
   const skillsSection = document.getElementById('skills');
   const skillsObserver = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) {
@@ -130,7 +185,6 @@
     }
     requestAnimationFrame(tick);
   }
-
   const statsObserver = new IntersectionObserver(entries => {
     if (entries[0].isIntersecting) {
       document.querySelectorAll('.stat-num').forEach(el => {
@@ -142,10 +196,24 @@
   const statsGrid = document.querySelector('.stats-grid');
   if (statsGrid) statsObserver.observe(statsGrid);
 
+  // ── Card Tilt on Hover ─────────────────────
+  document.querySelectorAll('.proj-card, .stat-card, .edu-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transform = `perspective(600px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+
   // ── Contact Form ───────────────────────────
-  const form        = document.getElementById('contactForm');
-  const submitBtn   = document.getElementById('submitBtn');
-  const successMsg  = document.getElementById('formSuccess');
+  const form       = document.getElementById('contactForm');
+  const submitBtn  = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('formSuccess');
+  const errorMsg   = document.getElementById('formError');
 
   function validateField(id, errId, validator, message) {
     const input = document.getElementById(id);
@@ -159,8 +227,6 @@
     err.textContent = '';
     return true;
   }
-
-  const errorMsg = document.getElementById('formError');
 
   if (form) {
     form.addEventListener('submit', async e => {
@@ -206,7 +272,7 @@
     });
   }
 
-  // ── Smooth scroll for all anchor links ────
+  // ── Smooth scroll for anchor links ─────────
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
