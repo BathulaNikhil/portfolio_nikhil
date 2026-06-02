@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Nikhil Bathula — Senior Software Engineer specializing in Java Full Stack, Flutter, AI/ML, and Cloud Technologies. Based in Hyderabad, India.">
+<meta name="keywords" content="Nikhil Bathula, Software Engineer, Java, Spring Boot, Flutter, React, AI, Hyderabad">
+<meta property="og:title" content="Nikhil Bathula — Senior Software Engineer">
+<meta property="og:description" content="Full Stack Engineer building scalable apps, AI systems & modern user experiences.">
+<meta property="og:type" content="website">
+<title>Nikhil Bathula — Senior Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Scroll Progress -->
+<div id="progress-bar"></div>
+
+<!-- Background -->
+<div class="bg-mesh" aria-hidden="true">
+  <div class="mesh-blob b1"></div>
+  <div class="mesh-blob b2"></div>
+  <div class="mesh-blob b3"></div>
+  <div class="mesh-blob b4"></div>
+</div>
+<div class="noise-overlay" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">NB<span class="logo-dot">.</span></a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#experience" class="nav-link">Experience</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link nav-cta">Hire Me</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#about" class="mob-link">About</a>
+  <a href="#skills" class="mob-link">Skills</a>
+  <a href="#experience" class="mob-link">Experience</a>
+  <a href="#projects" class="mob-link">Projects</a>
+  <a href="#contact" class="mob-link">Hire Me</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-container">
+    <div class="hero-left">
+      <div class="hero-badge animate-up delay-1">
+        <span class="badge-dot"></span>
+        Available for Opportunities
+      </div>
+      <h1 class="hero-name animate-up delay-2">
+        <span class="name-line">Nikhil</span>
+        <span class="name-line gradient-text">Bathula</span>
+      </h1>
+      <p class="hero-role animate-up delay-3">
+        Senior Software Engineer &nbsp;·&nbsp; Java Full Stack &nbsp;·&nbsp; AI Builder
+      </p>
+      <p class="hero-desc animate-up delay-4">
+        Crafting scalable applications, AI-powered systems, and modern user experiences. 3+ years turning complex problems into elegant, production-grade solutions.
+      </p>
+      <div class="hero-actions animate-up delay-5">
+        <a href="#contact" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contact Me
+        </a>
+        <a href="assets/resume.pdf" download class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Resume
+        </a>
+      </div>
+      <div class="hero-stats animate-up delay-6">
+        <div class="stat-pill"><strong>3+</strong> Years Exp.</div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill"><strong>20+</strong> Projects</div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill"><strong>15+</strong> Tech Stack</div>
+        <div class="stat-divider"></div>
+        <div class="stat-pill"><strong>1K+</strong> Dev Hours</div>
+      </div>
+    </div>
+
+    <div class="hero-right animate-up delay-3">
+      <div class="avatar-wrap">
+        <div class="avatar-orbit orbit1"></div>
+        <div class="avatar-orbit orbit2"></div>
+        <div class="avatar-frame">
+          <img src="assets/profile.jpg" alt="Nikhil Bathula" class="avatar-img" id="profileImg" onerror="this.style.display='none';document.getElementById('avatarFallback').style.display='flex'">
+          <div class="avatar-fallback" id="avatarFallback">
+            <span>NB</span>
+          </div>
+        </div>
+        <div class="floating-chip chip1">
+          <span>☕</span> Java Expert
+        </div>
+        <div class="floating-chip chip2">
+          <span>🤖</span> AI Builder
+        </div>
+        <div class="floating-chip chip3">
+          <span>📱</span> Flutter Dev
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Passionate Engineer,<br><span class="gradient-text">Building What Matters</span></h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p class="about-p">I'm a Senior Software Engineer based in <strong>Hyderabad, India</strong>, with deep expertise spanning Full Stack Development, Mobile Engineering, Cloud Infrastructure, and AI Applications. I thrive at the intersection of engineering rigor and product thinking — building systems that scale and interfaces that delight.</p>
+        <p class="about-p">From architecting <strong>Spring Boot microservices</strong> to integrating vector databases for AI-powered semantic search, I enjoy the full spectrum of the stack. My work spans enterprise platforms, real-time voice AI systems, and cross-platform mobile applications — always with a focus on craftsmanship and impact.</p>
+        <p class="about-p">Currently building at <strong>Nitya Inc.</strong>, where I work on the D3E framework ecosystem, CI/CD pipelines, and AI-powered developer tooling.</p>
+      </div>
+      <div class="about-interests">
+        <h3 class="interests-title">Personal Interests</h3>
+        <div class="interests-grid">
+          <div class="interest-chip">
+            <span class="int-icon">💻</span>
+            <span>Coding</span>
+          </div>
+          <div class="interest-chip">
+            <span class="int-icon">📷</span>
+            <span>Photography</span>
+          </div>
+          <div class="interest-chip">
+            <span class="int-icon">✈️</span>
+            <span>Travel</span>
+          </div>
+          <div class="interest-chip">
+            <span class="int-icon">🎬</span>
+            <span>Content Editing</span>
+          </div>
+          <div class="interest-chip">
+            <span class="int-icon">🔬</span>
+            <span>Tech Research</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Skills</div>
+      <h2 class="section-title">Technical <span class="gradient-text">Expertise</span></h2>
+      <p class="section-sub">A broad, deep skill set built across 3+ years of real-world production engineering.</p>
+    </div>
+
+    <div class="skills-tabs reveal">
+      <button class="skill-tab active" data-panel="backend">⚙️ Backend</button>
+      <button class="skill-tab" data-panel="frontend">🎨 Frontend</button>
+      <button class="skill-tab" data-panel="database">🗄️ Database</button>
+      <button class="skill-tab" data-panel="devops">☁️ DevOps</button>
+      <button class="skill-tab" data-panel="ai">🤖 AI & ML</button>
+    </div>
+
+    <div class="skills-panels reveal">
+      <div class="skills-panel active" id="panel-backend">
+        <div class="skill-list">
+          <div class="skill-row"><span class="skill-name">Java</span><div class="bar-bg"><div class="bar-fill" data-w="95"></div></div><span class="skill-pct">95%</span></div>
+          <div class="skill-row"><span class="skill-name">Spring Boot</span><div class="bar-bg"><div class="bar-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
+          <div class="skill-row"><span class="skill-name">Microservices</span><div class="bar-bg"><div class="bar-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+          <div class="skill-row"><span class="skill-name">Node.js</span><div class="bar-bg"><div class="bar-fill" data-w="82"></div></div><span class="skill-pct">82%</span></div>
+          <div class="skill-row"><span class="skill-name">Python FastAPI</span><div class="bar-bg"><div class="bar-fill" data-w="78"></div></div><span class="skill-pct">78%</span></div>
+        </div>
+      </div>
+      <div class="skills-panel" id="panel-frontend">
+        <div class="skill-list">
+          <div class="skill-row"><span class="skill-name">React.js</span><div class="bar-bg"><div class="bar-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+          <div class="skill-row"><span class="skill-name">Flutter</span><div class="bar-bg"><div class="bar-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+          <div class="skill-row"><span class="skill-name">TypeScript</span><div class="bar-bg"><div class="bar-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+          <div class="skill-row"><span class="skill-name">HTML / CSS</span><div class="bar-bg"><div class="bar-fill" data-w="92"></div></div><span class="skill-pct">92%</span></div>
+          <div class="skill-row"><span class="skill-name">JavaScript</span><div class="bar-bg"><div class="bar-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+        </div>
+      </div>
+      <div class="skills-panel" id="panel-database">
+        <div class="skill-list">
+          <div class="skill-row"><span class="skill-name">PostgreSQL</span><div class="bar-bg"><div class="bar-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+          <div class="skill-row"><span class="skill-name">MySQL</span><div class="bar-bg"><div class="bar-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+          <div class="skill-row"><span class="skill-name">Firebase</span><div class="bar-bg"><div class="bar-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+          <div class="skill-row"><span class="skill-name">Qdrant</span><div class="bar-bg"><div class="bar-fill" data-w="80"></div></div><span class="skill-pct">80%</span></div>
+          <div class="skill-row"><span class="skill-name">Pinecone</span><div class="bar-bg"><div class="bar-fill" data-w="72"></div></div><span class="skill-pct">72%</span></div>
+        </div>
+      </div>
+      <div class="skills-panel" id="panel-devops">
+        <div class="skill-list">
+          <div class="skill-row"><span class="skill-name">Docker</span><div class="bar-bg"><div class="bar-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+          <div class="skill-row"><span class="skill-name">GitHub Actions</span><div class="bar-bg"><div class="bar-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+          <div class="skill-row"><span class="skill-name">Nginx</span><div class="bar-bg"><div class="bar-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+          <div class="skill-row"><span class="skill-name">Linux</span><div class="bar-bg"><div class="bar-fill" data-w="88"></div></div><span class="skill-pct">88%</span></div>
+        </div>
+      </div>
+      <div class="skills-panel" id="panel-ai">
+        <div class="skill-list">
+          <div class="skill-row"><span class="skill-name">OpenAI / GPT</span><div class="bar-bg"><div class="bar-fill" data-w="90"></div></div><span class="skill-pct">90%</span></div>
+          <div class="skill-row"><span class="skill-name">Claude</span><div class="bar-bg"><div class="bar-fill" data-w="82"></div></div><span class="skill-pct">82%</span></div>
+          <div class="skill-row"><span class="skill-name">RAG Pipelines</span><div class="bar-bg"><div class="bar-fill" data-w="85"></div></div><span class="skill-pct">85%</span></div>
+          <div class="skill-row"><span class="skill-name">Vector Search</span><div class="bar-bg"><div class="bar-fill" data-w="83"></div></div><span class="skill-pct">83%</span></div>
+          <div class="skill-row"><span class="skill-name">Ollama / Llama</span><div class="bar-bg"><div class="bar-fill" data-w="78"></div></div><span class="skill-pct">78%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">Career <span class="gradient-text">Timeline</span></h2>
+      <p class="section-sub">3+ years of building across the full stack, from mobile to cloud.</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-header">
+            <div>
+              <div class="tl-period">2022 — Present</div>
+              <div class="tl-role">Software Engineer</div>
+              <div class="tl-company">Nitya Inc. &nbsp;·&nbsp; Hyderabad, India</div>
+            </div>
+            <div class="tl-badge">Current</div>
+          </div>
+          <p class="tl-desc">Leading full stack development of enterprise applications and AI-powered developer tools. Working on the D3E framework ecosystem, CI/CD pipelines, and cloud infrastructure on Hetzner.</p>
+          <div class="tl-tags">
+            <span class="tag">Full Stack Dev</span>
+            <span class="tag">Enterprise Apps</span>
+            <span class="tag">AI Integrations</span>
+            <span class="tag">Cloud Deployments</span>
+            <span class="tag">D3E Framework</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">Featured <span class="gradient-text">Work</span></h2>
+      <p class="section-sub">Handpicked projects that define my craft and engineering philosophy.</p>
+    </div>
+    <div class="projects-grid reveal">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:linear-gradient(135deg,#e8f4ff,#c7e0ff)">🤖</div>
+          <a href="#" class="proj-link" aria-label="View project">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <h3 class="proj-name">AI Resume Parser</h3>
+        <p class="proj-desc">AI-powered resume parsing and semantic search platform. Uses vector embeddings for intelligent candidate-to-job matching at scale.</p>
+        <div class="proj-stack">
+          <span class="stag">FastAPI</span><span class="stag">Qdrant</span><span class="stag">Ollama</span><span class="stag">Llama 3</span>
+        </div>
+      </div>
+
+      <div class="proj-card featured">
+        <div class="feat-badge">⭐ Featured</div>
+        <div class="proj-top">
+          <div class="proj-icon" style="background:linear-gradient(135deg,#fff0f8,#ffd6f0)">🎙️</div>
+          <a href="#" class="proj-link" aria-label="View project">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <h3 class="proj-name">Twilio AI Voice Assistant</h3>
+        <p class="proj-desc">Real-time voice assistant capable of natural conversations. Integrates Twilio telephony with OpenAI and Gemini for dynamic, context-aware responses.</p>
+        <div class="proj-stack">
+          <span class="stag">Twilio</span><span class="stag">OpenAI</span><span class="stag">Gemini</span><span class="stag">FastAPI</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:linear-gradient(135deg,#f0fff4,#c6f6d5)">💼</div>
+          <a href="#" class="proj-link" aria-label="View project">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <h3 class="proj-name">Job Portal Platform</h3>
+        <p class="proj-desc">Advanced job matching and recruitment platform with semantic search, candidate analytics dashboards, and intelligent filtering algorithms.</p>
+        <div class="proj-stack">
+          <span class="stag">React</span><span class="stag">Node.js</span><span class="stag">PostgreSQL</span><span class="stag">Qdrant</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:linear-gradient(135deg,#fffbeb,#fde68a)">🍽️</div>
+          <a href="#" class="proj-link" aria-label="View project">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <h3 class="proj-name">Restaurant Admin System</h3>
+        <p class="proj-desc">Restaurant management platform with real-time order tracking, menu management, and third-party delivery integrations including Uber Eats.</p>
+        <div class="proj-stack">
+          <span class="stag">Flutter</span><span class="stag">Firebase</span><span class="stag">Uber Eats API</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Education</div>
+      <h2 class="section-title">Academic <span class="gradient-text">Background</span></h2>
+    </div>
+    <div class="edu-grid reveal">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-year">2022 — 2025</div>
+        <div class="edu-degree">B.Tech Computer Science Engineering</div>
+        <div class="edu-inst">Sri Chaitanya Technical Campus</div>
+        <div class="edu-loc">Hyderabad, India</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">📐</div>
+        <div class="edu-year">2019 — 2022</div>
+        <div class="edu-degree">Diploma in Electronics & Communication</div>
+        <div class="edu-inst">Government Model Residential Polytechnic Gajwel</div>
+        <div class="edu-loc">Telangana, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-num" data-target="3" data-suffix="+">0</div>
+        <div class="stat-label">Years Experience</div>
+        <div class="stat-sub">Production Engineering</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="20" data-suffix="+">0</div>
+        <div class="stat-label">Projects Completed</div>
+        <div class="stat-sub">Shipped & Live</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="15" data-suffix="+">0</div>
+        <div class="stat-label">Technologies</div>
+        <div class="stat-sub">Across Full Stack</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" data-target="1000" data-suffix="+">0</div>
+        <div class="stat-label">Dev Hours</div>
+        <div class="stat-sub">Coding & Building</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+      <p class="section-sub">Open to new opportunities, collaborations, and interesting conversations.</p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <h3 class="ci-title">Get in touch</h3>
+        <p class="ci-desc">Whether you have a project in mind, want to discuss opportunities, or just want to say hi — my inbox is always open. I'll get back to you within 24 hours.</p>
+
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/nikhil-bathula-65b65a225" target="_blank" rel="noopener" class="clink">
+            <div class="clink-icon" style="background:#e8f4ff;color:#0077b5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="clink-text">
+              <div class="clink-label">LinkedIn</div>
+              <div class="clink-val">nikhil-bathula-65b65a225</div>
+            </div>
+            <svg class="clink-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+
+          <a href="mailto:nikhilbunny36@gmail.com" class="clink">
+            <div class="clink-icon" style="background:#f0e8ff;color:#7c3aed">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="clink-text">
+              <div class="clink-label">Email</div>
+              <div class="clink-val">nikhilbunny36@gmail.com</div>
+            </div>
+            <svg class="clink-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+
+          <a href="tel:+919390072128" class="clink">
+            <div class="clink-icon" style="background:#e8fff4;color:#059669">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.09 6.09l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="clink-text">
+              <div class="clink-label">Phone</div>
+              <div class="clink-val">+91 93900 72128</div>
+            </div>
+            <svg class="clink-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+
+          <div class="clink" style="cursor:default">
+            <div class="clink-icon" style="background:#fff0f0;color:#dc2626">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="clink-text">
+              <div class="clink-label">Location</div>
+              <div class="clink-val">Hyderabad, India 🇮🇳</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <form id="contactForm" class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">Your Name</label>
+              <input class="form-input" type="text" id="fname" name="name" placeholder="John Doe" required>
+              <span class="form-error" id="err-name"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="femail">Email Address</label>
+              <input class="form-input" type="email" id="femail" name="email" placeholder="john@company.com" required>
+              <span class="form-error" id="err-email"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fsubject">Subject</label>
+            <input class="form-input" type="text" id="fsubject" name="subject" placeholder="Project collaboration, job opportunity..." required>
+            <span class="form-error" id="err-subject"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fmessage">Message</label>
+            <textarea class="form-input" id="fmessage" name="message" rows="5" placeholder="Tell me about your project, timeline, and how I can help..." required></textarea>
+            <span class="form-error" id="err-message"></span>
+          </div>
+          <button type="submit" class="btn-primary form-submit" id="submitBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Message
+          </button>
+          <div class="form-success" id="formSuccess">
+            ✅ Message sent! I'll get back to you within 24 hours.
+          </div>
+          <p class="form-note">
+            💡 To activate the contact form, connect a form backend — see <code>README.md</code> for instructions (Formspree, EmailJS, or custom API).
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-logo" style="font-size:20px">NB<span class="logo-dot">.</span></span>
+      <p>Senior Software Engineer · Hyderabad, India</p>
+    </div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="footer-copy">© 2025 Nikhil Bathula. Built with ❤️ in Hyderabad.</p>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

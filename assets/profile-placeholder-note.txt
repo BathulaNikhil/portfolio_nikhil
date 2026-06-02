@@ -1,0 +1,2 @@
+REPLACE THIS FILE: Add your actual photo as "profile.jpg" (square, min 400x400px)
+If missing, the portfolio shows your initials "NB" automatically.
