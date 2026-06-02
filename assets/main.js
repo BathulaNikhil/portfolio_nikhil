@@ -160,43 +160,49 @@
     return true;
   }
 
+  const errorMsg = document.getElementById('formError');
+
   if (form) {
     form.addEventListener('submit', async e => {
       e.preventDefault();
 
-      const validName    = validateField('fname',    'err-name',    v => v.length >= 2, 'Please enter your name.');
+      const validName    = validateField('fname',    'err-name',    v => v.length >= 2,  'Please enter your name.');
       const validEmail   = validateField('femail',   'err-email',   v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), 'Please enter a valid email.');
-      const validSubject = validateField('fsubject', 'err-subject', v => v.length >= 3, 'Please enter a subject.');
+      const validSubject = validateField('fsubject', 'err-subject', v => v.length >= 3,  'Please enter a subject.');
       const validMessage = validateField('fmessage', 'err-message', v => v.length >= 10, 'Please write at least 10 characters.');
 
       if (!validName || !validEmail || !validSubject || !validMessage) return;
 
-      // ── Connect your form backend here ──
-      // Option 1: Formspree
-      //   Change action to: https://formspree.io/f/YOUR_ID
-      //   Uncomment below and remove the simulated response:
-      //
-      // const data = new FormData(form);
-      // const res = await fetch('https://formspree.io/f/YOUR_ID', {
-      //   method: 'POST', body: data, headers: { 'Accept': 'application/json' }
-      // });
-      // if (res.ok) { ... }
-      //
-      // Option 2: EmailJS — see README.md
-      // Option 3: Custom API — see README.md
-
-      // Simulated success (remove once backend is wired):
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Sending...';
-      await new Promise(r => setTimeout(r, 1200));
-      form.reset();
-      submitBtn.innerHTML = '✓ Message Sent!';
-      successMsg.classList.add('show');
-      setTimeout(() => {
+      if (errorMsg) errorMsg.classList.remove('show');
+
+      try {
+        const payload = Object.fromEntries(new FormData(form));
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+
+        if (result.success) {
+          form.reset();
+          submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Message Sent!';
+          successMsg.classList.add('show');
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
+            successMsg.classList.remove('show');
+          }, 5000);
+        } else {
+          throw new Error(result.message || 'Submission failed.');
+        }
+      } catch (err) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message';
-        successMsg.classList.remove('show');
-      }, 5000);
+        if (errorMsg) errorMsg.classList.add('show');
+      }
     });
   }
 
