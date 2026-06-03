@@ -73,15 +73,17 @@
   });
 
   // ── Scroll Reveals (all directions + stagger) ──
-  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger';
+  const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-blur, .stagger';
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
+        const delay = e.target.dataset.delay;
+        if (delay) e.target.style.transitionDelay = delay;
         e.target.classList.add('visible');
         revealObserver.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll(revealSelectors).forEach(el => revealObserver.observe(el));
 
   // ── Typing Effect (hero role) ──────────────
@@ -271,6 +273,10 @@
       }
     });
   }
+
+  // ── Footer year ────────────────────────────
+  const footerYear = document.getElementById('footer-year');
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
 
   // ── Smooth scroll for anchor links ─────────
   document.querySelectorAll('a[href^="#"]').forEach(a => {
