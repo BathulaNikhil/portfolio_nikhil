@@ -5,6 +5,21 @@
 (function () {
   'use strict';
 
+  // ── Dark Mode Toggle ──────────────────────
+  const themeToggle = document.getElementById('themeToggle');
+  const htmlEl = document.documentElement;
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = htmlEl.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+      htmlEl.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    } else {
+      htmlEl.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  });
+
   // ── Custom Cursor ──────────────────────────
   const cursor = document.getElementById('cursor');
   const ring   = document.getElementById('cursor-ring');
