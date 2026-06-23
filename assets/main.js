@@ -39,7 +39,7 @@
     requestAnimationFrame(animRing);
   })();
 
-  document.querySelectorAll('a, button, .proj-card, .clink, .interest-chip, .tl-card, .edu-card, .stat-card')
+  document.querySelectorAll('a, button, .proj-card, .clink, .interest-chip, .tl-card, .edu-card, .stat-card, .rv-btn, .resume-dl-btn, .resume-close-btn')
     .forEach(el => {
       el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
       el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -288,6 +288,141 @@
       }
     });
   }
+
+  // ── Resume Modal (PDF.js viewer) ──────────
+  const resumeModal    = document.getElementById('resumeModal');
+  const resumeModalBox = document.getElementById('resumeModalBox');
+  const viewResumeBtn  = document.getElementById('viewResumeBtn');
+  const resumeCloseBtn = document.getElementById('resumeCloseBtn');
+
+  let pdfDoc = null, pdfScale = 1, pdfLoaded = false;
+  const ZOOM_STEPS = [0.5, 0.75, 1.0, 1.25, 1.5, 2.0];
+
+  function rvSetBtnsEnabled(on) {
+    ['rvPrev','rvNext','rvZoomIn','rvZoomOut','rvFitWidth'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.disabled = !on;
+    });
+  }
+
+  function rvFitScale() {
+    const container = document.getElementById('rvPages');
+    const first = pdfDoc._pdfInfo ? null : null; // just use clientWidth
+    if (!pdfDoc) return Promise.resolve(1);
+    return pdfDoc.getPage(1).then(p => {
+      const vp = p.getViewport({ scale: 1 });
+      const w = container.clientWidth - 32;
+      return Math.max(0.5, w / vp.width);
+    });
+  }
+
+  async function rvRender(scale) {
+    const container = document.getElementById('rvPages');
+    container.innerHTML = '<div class="rv-loading"><div class="rv-spinner"></div><span>Rendering pages…</span></div>';
+
+    // Build all page wrappers first so they appear immediately
+    const jobs = [];
+    for (let i = 1; i <= pdfDoc.numPages; i++) {
+      const page    = await pdfDoc.getPage(i);
+      const vp      = page.getViewport({ scale });
+      const canvas  = document.createElement('canvas');
+      canvas.width  = Math.round(vp.width);
+      canvas.height = Math.round(vp.height);
+      const wrap    = document.createElement('div');
+      wrap.className  = 'rv-page-wrap';
+      wrap.dataset.page = i;
+      wrap.appendChild(canvas);
+      jobs.push({ canvas, page, vp, wrap });
+    }
+
+    container.innerHTML = '';
+    jobs.forEach(j => container.appendChild(j.wrap));
+
+    // Render each page onto its canvas
+    for (const { canvas, page, vp } of jobs) {
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport: vp }).promise;
+    }
+
+    pdfScale = scale;
+    document.getElementById('rvZoomVal').textContent = Math.round(scale * 100) + '%';
+    rvSetBtnsEnabled(true);
+
+    // Scroll-based page counter
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting)
+          document.getElementById('rvCurrentPage').textContent = e.target.dataset.page;
+      });
+    }, { root: container, threshold: 0.3 });
+    jobs.forEach(j => obs.observe(j.wrap));
+  }
+
+  async function rvLoad() {
+    if (pdfLoaded) return;
+    pdfLoaded = true;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/pdf.worker.min.js';
+    try {
+      pdfDoc = await pdfjsLib.getDocument('assets/NikhilResume.pdf').promise;
+      document.getElementById('rvTotalPages').textContent  = pdfDoc.numPages;
+      document.getElementById('rvCurrentPage').textContent = '1';
+      const scale = await rvFitScale();
+      await rvRender(scale);
+    } catch (err) {
+      console.error('PDF load error:', err);
+      document.getElementById('rvPages').innerHTML =
+        '<div class="rv-loading"><span style="color:#f87171">Failed to load PDF. Check console.</span></div>';
+    }
+  }
+
+  function openResume() {
+    resumeModal.classList.add('open');
+    resumeModal.removeAttribute('aria-hidden');
+    document.body.style.overflow = 'hidden';
+    resumeModalBox.focus();
+    setTimeout(rvLoad, 60);
+  }
+  function closeResume() {
+    resumeModal.classList.remove('open');
+    resumeModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('rvZoomIn')?.addEventListener('click', async () => {
+    const next = ZOOM_STEPS.find(s => s > pdfScale + 0.01);
+    if (next) await rvRender(next);
+  });
+  document.getElementById('rvZoomOut')?.addEventListener('click', async () => {
+    const prev = [...ZOOM_STEPS].reverse().find(s => s < pdfScale - 0.01);
+    if (prev) await rvRender(prev);
+  });
+  document.getElementById('rvFitWidth')?.addEventListener('click', async () => {
+    const scale = await rvFitScale();
+    await rvRender(scale);
+  });
+  document.getElementById('rvPrev')?.addEventListener('click', () => {
+    const cur = parseInt(document.getElementById('rvCurrentPage').textContent);
+    if (cur > 1) rvScrollTo(cur - 1);
+  });
+  document.getElementById('rvNext')?.addEventListener('click', () => {
+    const cur   = parseInt(document.getElementById('rvCurrentPage').textContent);
+    const total = parseInt(document.getElementById('rvTotalPages').textContent);
+    if (cur < total) rvScrollTo(cur + 1);
+  });
+
+  function rvScrollTo(n) {
+    const pg = document.querySelector(`#rvPages [data-page="${n}"]`);
+    if (pg) pg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  if (viewResumeBtn)  viewResumeBtn.addEventListener('click', openResume);
+  if (resumeCloseBtn) resumeCloseBtn.addEventListener('click', closeResume);
+  resumeModal.addEventListener('click', e => {
+    if (e.target === resumeModal) closeResume();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && resumeModal.classList.contains('open')) closeResume();
+  });
 
   // ── Footer year ────────────────────────────
   const footerYear = document.getElementById('footer-year');
